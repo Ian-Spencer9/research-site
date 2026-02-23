@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ETF Momentum Allocation Research | Ian Spencer</title>
+  <style>
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:980px;margin:40px auto;padding:0 16px;color:#111}
+    h1,h2{margin-bottom:.4rem}
+    .muted{color:#555}
+    .card{border:1px solid #e6e6e6;border-radius:10px;padding:14px 16px;margin:14px 0}
+    table{width:100%;border-collapse:collapse;margin-top:8px}
+    th,td{padding:8px;border-bottom:1px solid #eee;text-align:left}
+    .small{font-size:.92rem}
+    code{background:#f6f6f6;padding:2px 6px;border-radius:6px}
+  </style>
+</head>
+<body>
+  <p><a href="./index.html">← Back to home</a></p>
+  <h1>ETF Momentum Allocation Research</h1>
+  <p class="muted">Systematic monthly ETF rotation with trend filter, inverse-vol weighting, transaction-cost assumptions, and tiered management-fee modeling.</p>
+
+  <div class="card">
+    <h2>Strategy Snapshot</h2>
+    <ul>
+      <li><strong>Universe:</strong> SPY, QQQ, IWM, EFA, EEM, TLT, GLD</li>
+      <li><strong>Defensive sleeve:</strong> SHY (risk-off)</li>
+      <li><strong>Selection:</strong> Top-3 blended momentum (3m + 6m)</li>
+      <li><strong>Risk controls:</strong> SPY 200DMA regime filter + inverse-vol weights</li>
+      <li><strong>Rebalance:</strong> Monthly</li>
+      <li><strong>Costs modeled:</strong> 6 bps one-way transaction cost; tiered mgmt fee schedule</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Latest Full-History Results (today)</h2>
+    <p class="small muted">Run window: 2005-07-01 to 2025-11-28. Note: values below are from the latest full-history strategy run before management-fee overlay comparison page was added.</p>
+    <table>
+      <thead>
+        <tr><th>Series</th><th>Total Return</th><th>CAGR</th><th>Vol</th><th>Sharpe</th><th>Max Drawdown</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Momentum v0 (Sharpe Upgrade)</td><td>1,590.27%</td><td>21.21%</td><td>16.62%</td><td>1.28</td><td>-23.52%</td></tr>
+        <tr><td>S&amp;P 500</td><td>468.01%</td><td>12.54%</td><td>18.70%</td><td>0.67</td><td>-41.49%</td></tr>
+        <tr><td>60/40</td><td>259.18%</td><td>9.09%</td><td>11.40%</td><td>0.80</td><td>-25.42%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>How to read this</h2>
+    <ul>
+      <li>The objective is to improve risk-adjusted return versus passive benchmarks.</li>
+      <li>Sharpe ratio and max drawdown are treated as primary risk diagnostics.</li>
+      <li>Current workflow is research-grade and continuously iterated in Jupyter.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Disclosure</h2>
+    <p class="small">Hypothetical backtest for research use only; not investment advice. Results depend on assumptions including rebalancing mechanics, transaction costs, management fees, and data quality. Past performance does not guarantee future results.</p>
+  </div>
+</body>
+</html>
