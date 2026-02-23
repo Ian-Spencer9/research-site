@@ -27,8 +27,9 @@
       <li><strong>Defensive sleeve:</strong> SHY (risk-off)</li>
       <li><strong>Selection:</strong> Top-2 blended momentum (21d + 84d, 50/50 weighting)</li>
       <li><strong>Risk controls:</strong> SPY 150DMA regime filter + inverse-vol weighting (42d vol lookback)</li>
-      <li><strong>Rebalance:</strong> Monthly</li>
+      <li><strong>Rebalance:</strong> Monthly (month-end signal; execution at month-end close / last trading day of month)</li>
       <li><strong>Implementation assumptions:</strong> 6 bps one-way transaction cost + tiered management fee schedule</li>
+      <li><strong>Operational cadence:</strong> Daily post-close model refresh with provisional next-month rebalance estimation</li>
     </ul>
   </div>
 
