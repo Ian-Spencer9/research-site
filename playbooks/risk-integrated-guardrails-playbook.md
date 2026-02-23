@@ -34,6 +34,29 @@ Record:
 - Mode selected
 - Action taken (trade / hold / de-risk)
 
+## Mode definitions
+
+### Normal Mode (all guardrails Green)
+**Goal:** maximize participation per model.
+- Execute model targets as-is.
+- Standard rebalance cadence.
+- No extra defensive overlays.
+- Routine monitoring only.
+
+### Caution Mode (any Yellow, none Red)
+**Goal:** stay invested while reducing risk appetite.
+- Follow model direction.
+- Reduce aggressiveness (lighter sizing / tighter risk).
+- No discretionary risk adds.
+- Increase monitoring and prepare to step into Protection if Red appears.
+
+### Protection Mode (any Red)
+**Goal:** capital preservation first.
+- De-risk promptly.
+- Prioritize downside control over upside capture.
+- Favor defensive sleeve (e.g., SHY/cash proxy) as needed.
+- Execute risk-reducing changes first until conditions improve.
+
 ## Optional practical defaults
 If you want fixed sizing guidance:
 - **Normal:** 1.00x
