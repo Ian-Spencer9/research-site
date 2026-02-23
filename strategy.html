@@ -49,6 +49,12 @@
   </div>
 
   <div class="card">
+    <h2>5-Year Performance (Growth of $1)</h2>
+    <p class="small muted">Window: 2020-01-01 to 2025-11-28</p>
+    <canvas id="fiveYearChart" height="120"></canvas>
+  </div>
+
+  <div class="card">
     <h2>How to read this</h2>
     <ul>
       <li>The objective is to improve risk-adjusted return versus passive benchmarks.</li>
@@ -61,5 +67,43 @@
     <h2>Disclosure</h2>
     <p class="small">Hypothetical backtest for research use only; not investment advice. Results depend on assumptions including rebalancing mechanics, transaction costs, management fees, and data quality. Past performance does not guarantee future results.</p>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    async function loadFiveYearChart() {
+      const res = await fetch('./data/five_year_growth.csv');
+      const text = await res.text();
+      const lines = text.trim().split('\n');
+      const rows = lines.slice(1).map(l => l.split(','));
+
+      const labels = rows.map(r => r[0]);
+      const strategy = rows.map(r => Number(r[1]));
+      const sp500 = rows.map(r => Number(r[2]));
+      const sixty40 = rows.map(r => Number(r[3]));
+
+      const ctx = document.getElementById('fiveYearChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            { label: 'Momentum Rotation Strategy', data: strategy, borderWidth: 2, pointRadius: 0 },
+            { label: 'S&P 500', data: sp500, borderWidth: 2, pointRadius: 0 },
+            { label: '60/40', data: sixty40, borderWidth: 2, pointRadius: 0 }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: { legend: { position: 'top' } },
+          scales: {
+            x: { ticks: { maxTicksLimit: 10 } },
+            y: { title: { display: true, text: 'Growth of $1' } }
+          }
+        }
+      });
+    }
+    loadFiveYearChart();
+  </script>
 </body>
 </html>
