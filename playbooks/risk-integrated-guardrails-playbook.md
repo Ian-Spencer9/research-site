@@ -136,5 +136,39 @@ targets_capped = apply_single_name_cap(targets_scaled, cap=0.45)
 - [ ] Final targets sum to 100%
 - [ ] Decision logged with timestamp
 
+## Instructions: What To Do
+
+### 1) Check guardrails (daily after close)
+- Read the latest values for:
+  - Current Drawdown (DD)
+  - Rolling Volatility (VOL63)
+  - Max Target Weight (MTW)
+
+### 2) Determine risk posture
+- Identify each guardrail band (Green/Yellow/Red/Extreme).
+- Use the most conservative output:
+  - Compute each multiplier (`m_dd`, `m_vol`, `m_mtw`)
+  - Set `m_base = min(m_dd, m_vol, m_mtw)`
+- If Extreme override is triggered (`DD <= -25%` or `VOL63 > 30%`), set `m_final = 0.20x` immediately.
+
+### 3) Apply position sizing and caps
+- Scale raw model targets by `m_final`.
+- Enforce single-name cap (45%).
+- Redistribute excess pro-rata to uncapped sleeves (or SHY/cash fallback).
+- Re-normalize to 100% total portfolio weight.
+
+### 4) Decide execution
+- If weight changes are material (>2% absolute), stage trade list.
+- If not material and no hard-cap breach, hold and reassess next day.
+
+### 5) Re-risk slowly
+- Only move up one posture step at a time.
+- Require consecutive improvement days per re-risk protocol before increasing risk.
+
+### 6) Log and communicate
+- Log date/time, guardrail bands, `m_final`, cap overrides, and actions taken.
+- In Red/Extreme states, include brief risk-status note in weekly investor update.
+
 ## Version history
+- **v1.1 (2026-02-23):** Added explicit "Instructions: What To Do" operating section.
 - **v1 (2026-02-23):** Initial integrated guardrails framework.
